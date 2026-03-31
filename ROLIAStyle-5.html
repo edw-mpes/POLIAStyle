@@ -1,0 +1,1190 @@
+<!DOCTYPE html>
+<html lang="el">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>ROLIAStyle — Automotive Electrical Excellence</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=Barlow:wght@200;300;400;500;600&family=Barlow+Condensed:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<style>
+:root {
+  --white: #ffffff;
+  --silver: #b8bdc8;
+  --silver-light: #d4d8e2;
+  --silver-dark: #7a8090;
+  --accent: #6e8cff;
+  --accent2: #a0b4ff;
+  --accent3: #4a6cf7;
+  --dark: #0e1018;
+  --dark2: #181c26;
+  --border: rgba(180,190,220,0.15);
+  --border-active: rgba(110,140,255,0.5);
+  --glass: rgba(255,255,255,0.05);
+  --glass-strong: rgba(255,255,255,0.1);
+}
+
+*, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+html { scroll-behavior: smooth; overflow-x: hidden; }
+body { background: var(--dark); color: var(--white); font-family: 'Barlow', sans-serif; font-weight: 300; overflow-x: hidden; width: 100%; animation: bodyFade .5s ease; }
+
+@keyframes bodyFade { from { opacity: 0; } to { opacity: 1; } }
+@keyframes fadeUp { from { opacity: 0; transform: translateY(28px); } to { opacity: 1; transform: translateY(0); } }
+@keyframes slideInLeft { from { opacity: 0; transform: translateX(-30px); } to { opacity: 1; transform: translateX(0); } }
+@keyframes slideInRight { from { opacity: 0; transform: translateX(30px); } to { opacity: 1; transform: translateX(0); } }
+@keyframes pulse { 0%, 100% { box-shadow: 0 0 0 0 rgba(110,140,255,0.4); } 50% { box-shadow: 0 0 0 12px rgba(110,140,255,0); } }
+@keyframes floatY { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-10px); } }
+@keyframes rotateSlow { from { transform: rotate(0deg); } to { transform: rotate(360deg); } }
+@keyframes scanLine { 0% { left: -100%; } 100% { left: 120%; } }
+@keyframes waveFlow { 0% { transform: translateX(0); } 100% { transform: translateX(-50%); } }
+@keyframes drift { 0% { transform: translate(0, 0); } 100% { transform: translate(20px, 30px); } }
+@keyframes glow { 0%, 100% { filter: drop-shadow(0 0 4px rgba(110,140,255,0.3)); } 50% { filter: drop-shadow(0 0 14px rgba(110,140,255,0.8)); } }
+@keyframes borderPulse { 0%, 100% { border-color: rgba(110,140,255,0.15); } 50% { border-color: rgba(110,140,255,0.5); } }
+@keyframes typingDot { 0%, 60%, 100% { transform: translateY(0); opacity: 0.3; } 30% { transform: translateY(-6px); opacity: 1; } }
+@keyframes lineGrow { from { width: 0; } to { width: 100%; } }
+
+/* SCROLLBAR */
+::-webkit-scrollbar { width: 3px; }
+::-webkit-scrollbar-track { background: var(--dark); }
+::-webkit-scrollbar-thumb { background: var(--accent); border-radius: 2px; }
+
+/* REVEAL */
+.rv { opacity: 0; transform: translateY(24px); transition: opacity 0.8s ease, transform 0.8s ease; }
+.rv.on { opacity: 1; transform: translateY(0); }
+.rv-l { opacity: 0; transform: translateX(-24px); transition: opacity 0.8s ease, transform 0.8s ease; }
+.rv-l.on { opacity: 1; transform: translateX(0); }
+.rv-r { opacity: 0; transform: translateX(24px); transition: opacity 0.8s ease, transform 0.8s ease; }
+.rv-r.on { opacity: 1; transform: translateX(0); }
+.rv-s { opacity: 0; transform: scale(0.94); transition: opacity 0.8s ease, transform 0.8s ease; }
+.rv-s.on { opacity: 1; transform: scale(1); }
+.d1 { transition-delay: 0.08s; }
+.d2 { transition-delay: 0.16s; }
+.d3 { transition-delay: 0.24s; }
+.d4 { transition-delay: 0.32s; }
+.d5 { transition-delay: 0.40s; }
+.d6 { transition-delay: 0.48s; }
+
+/* NAV */
+nav {
+  position: fixed; top: 0; left: 0; right: 0; z-index: 1000;
+  padding: 22px 60px;
+  display: flex; align-items: center; justify-content: space-between;
+  transition: all 0.4s ease;
+  width: 100%; overflow: hidden;
+}
+nav.scrolled {
+  background: rgba(14,16,24,0.95);
+  backdrop-filter: blur(20px);
+  border-bottom: 1px solid var(--border);
+  padding: 14px 60px;
+}
+.nav-logo {
+  font-family: 'Barlow Condensed', sans-serif;
+  font-size: 1.5rem; font-weight: 700; letter-spacing: 0.18em;
+  color: var(--white); text-decoration: none; text-transform: uppercase;
+  position: relative;
+}
+.nav-logo span { color: var(--accent); font-weight: 300; }
+.nav-logo::after {
+  content: ''; position: absolute; bottom: -4px; left: 0;
+  height: 1px; background: linear-gradient(90deg, var(--accent), transparent);
+  width: 0; animation: lineGrow 1.2s ease forwards 0.6s;
+}
+.nav-links { display: flex; gap: 36px; list-style: none; }
+.nav-links a {
+  color: var(--silver); text-decoration: none;
+  font-size: 0.7rem; font-weight: 400; letter-spacing: 0.2em; text-transform: uppercase;
+  transition: color 0.3s; position: relative;
+}
+.nav-links a::after {
+  content: ''; position: absolute; bottom: -4px; left: 0;
+  width: 0; height: 1px; background: var(--accent); transition: width 0.3s;
+}
+.nav-links a:hover { color: var(--white); }
+.nav-links a:hover::after { width: 100%; }
+.nav-cta {
+  background: var(--accent); color: var(--dark); border: none;
+  padding: 10px 26px; cursor: pointer;
+  font-family: 'Barlow', sans-serif; font-size: 0.68rem; font-weight: 600;
+  letter-spacing: 0.2em; text-transform: uppercase;
+  transition: all 0.3s;
+  clip-path: polygon(8px 0%, 100% 0%, calc(100% - 8px) 100%, 0% 100%);
+}
+.nav-cta:hover { background: var(--white); transform: translateY(-2px); }
+.hamburger { display: none; flex-direction: column; gap: 5px; cursor: pointer; padding: 4px; }
+.hamburger span { display: block; width: 24px; height: 1px; background: var(--silver); transition: all 0.3s; }
+
+/* HERO */
+.hero {
+  min-height: 100vh; position: relative;
+  display: flex; align-items: center;
+  padding: 0 60px; overflow: hidden;
+}
+.hero-bg {
+  position: absolute; inset: 0;
+  background:
+    radial-gradient(ellipse 70% 70% at 80% 50%, rgba(110,140,255,0.09) 0%, transparent 65%),
+    radial-gradient(ellipse 40% 60% at 10% 30%, rgba(160,180,255,0.05) 0%, transparent 60%),
+    linear-gradient(150deg, var(--dark2) 0%, var(--dark) 100%);
+}
+.hero-photo {
+  position: absolute; inset: 0;
+  background: url('https://images.unsplash.com/photo-1619642751034-765dfdf7c58e?w=1600&q=80&auto=format&fit=crop') center/cover no-repeat;
+  opacity: 0.06;
+}
+.hero-grid {
+  position: absolute; inset: 0;
+  background-image: linear-gradient(rgba(110,140,255,0.06) 1px, transparent 1px), linear-gradient(90deg, rgba(110,140,255,0.06) 1px, transparent 1px);
+  background-size: 65px 65px;
+  mask-image: radial-gradient(ellipse 80% 80% at 80% 50%, black 0%, transparent 70%);
+}
+.orb { position: absolute; border-radius: 50%; filter: blur(80px); pointer-events: none; }
+.orb1 { width: 480px; height: 480px; background: rgba(110,140,255,0.07); right: -80px; top: 10%; animation: drift 10s ease-in-out infinite alternate; }
+.orb2 { width: 280px; height: 280px; background: rgba(160,180,255,0.05); right: 25%; bottom: 5%; animation: drift 13s ease-in-out infinite alternate; animation-delay: 2s; }
+.orb3 { width: 180px; height: 180px; background: rgba(200,210,255,0.04); left: 5%; top: 30%; animation: drift 8s ease-in-out infinite alternate; animation-delay: 4s; }
+
+.hero-content { position: relative; z-index: 2; max-width: 780px; }
+.hero-tag {
+  display: inline-flex; align-items: center; gap: 10px;
+  font-size: 0.64rem; font-weight: 500; letter-spacing: 0.36em; text-transform: uppercase;
+  color: var(--accent); margin-bottom: 28px;
+  opacity: 0; animation: fadeUp 0.8s ease forwards 0.4s;
+}
+.hero-tag::before { content: ''; width: 32px; height: 1px; background: var(--accent); }
+.hero-tag-dot { width: 6px; height: 6px; border-radius: 50%; background: var(--accent); box-shadow: 0 0 8px var(--accent); animation: pulse 2s ease-in-out infinite; }
+.hero-h1 { font-family: 'Cormorant Garamond', serif; font-size: clamp(4.5rem, 10vw, 9rem); font-weight: 300; line-height: 0.92; letter-spacing: -0.02em; margin-bottom: 20px; }
+.hero-h1 .line1 { display: block; opacity: 0; animation: slideInLeft 1s ease forwards 0.6s; }
+.hero-h1 .line2 { display: block; font-style: italic; background: linear-gradient(135deg, var(--white) 30%, var(--accent2)); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; opacity: 0; animation: slideInLeft 1s ease forwards 0.75s; }
+.hero-sub { font-size: 1rem; font-weight: 300; color: var(--silver); line-height: 1.75; max-width: 460px; margin-bottom: 48px; opacity: 0; animation: fadeUp 0.8s ease forwards 1s; }
+.hero-btns { display: flex; gap: 16px; align-items: center; opacity: 0; animation: fadeUp 0.8s ease forwards 1.2s; }
+.btn-main {
+  background: linear-gradient(135deg, var(--accent), var(--accent3));
+  color: var(--white); border: none; padding: 15px 38px;
+  font-family: 'Barlow', sans-serif; font-size: 0.72rem; font-weight: 600;
+  letter-spacing: 0.2em; text-transform: uppercase; cursor: pointer;
+  clip-path: polygon(10px 0%, 100% 0%, calc(100% - 10px) 100%, 0% 100%);
+  box-shadow: 0 8px 28px rgba(110,140,255,0.3);
+  transition: all 0.3s; position: relative; overflow: hidden;
+}
+.btn-main::before { content: ''; position: absolute; inset: 0; background: linear-gradient(135deg, rgba(255,255,255,0.15), transparent); opacity: 0; transition: opacity 0.3s; }
+.btn-main:hover { transform: translateY(-3px); box-shadow: 0 14px 42px rgba(110,140,255,0.5); }
+.btn-main:hover::before { opacity: 1; }
+.btn-out {
+  background: transparent; color: var(--silver); border: 1px solid var(--border);
+  padding: 14px 34px;
+  font-family: 'Barlow', sans-serif; font-size: 0.72rem; font-weight: 400;
+  letter-spacing: 0.2em; text-transform: uppercase; cursor: pointer;
+  clip-path: polygon(10px 0%, 100% 0%, calc(100% - 10px) 100%, 0% 100%);
+  transition: all 0.3s;
+}
+.btn-out:hover { border-color: var(--accent); color: var(--white); }
+
+.hero-stats { position: absolute; right: 60px; bottom: 80px; display: flex; flex-direction: column; gap: 28px; opacity: 0; animation: slideInRight 0.9s ease forwards 1.5s; }
+.stat { text-align: right; }
+.stat-n { font-family: 'Barlow Condensed', sans-serif; font-size: 2.8rem; font-weight: 700; line-height: 1; background: linear-gradient(135deg, var(--white), var(--silver-light)); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; animation: glow 4s ease-in-out infinite; }
+.stat-l { font-size: 0.6rem; font-weight: 400; letter-spacing: 0.2em; text-transform: uppercase; color: var(--silver-dark); margin-top: 2px; }
+
+.scroll-hint { position: absolute; bottom: 30px; left: 60px; display: flex; align-items: center; gap: 10px; font-size: 0.6rem; letter-spacing: 0.3em; text-transform: uppercase; color: var(--silver-dark); opacity: 0; animation: fadeUp 0.8s ease forwards 2s; }
+.scroll-line { width: 40px; height: 1px; background: rgba(180,190,220,0.2); position: relative; overflow: hidden; }
+.scroll-line::after { content: ''; position: absolute; top: 0; left: -100%; width: 100%; height: 100%; background: var(--accent); animation: scanLine 2s ease-in-out infinite 2.2s; }
+
+/* TICKER */
+.ticker { background: linear-gradient(135deg, var(--accent), var(--accent3)); padding: 13px 0; overflow: hidden; width: 100%; position: relative; z-index: 2; }
+.ticker-inner { display: flex; width: max-content; animation: waveFlow 20s linear infinite; }
+.tick { font-family: 'Barlow Condensed', sans-serif; font-size: 0.75rem; font-weight: 600; letter-spacing: 0.28em; text-transform: uppercase; color: rgba(255,255,255,0.9); padding: 0 36px; white-space: nowrap; }
+.tick-dot { color: rgba(255,255,255,0.35); }
+
+/* SECTION TAGS */
+.stag { display: inline-flex; align-items: center; gap: 9px; font-size: 0.62rem; font-weight: 500; letter-spacing: 0.36em; text-transform: uppercase; color: var(--accent); margin-bottom: 18px; }
+.stag::before { content: ''; width: 26px; height: 1px; background: var(--accent); }
+.stitle { font-family: 'Cormorant Garamond', serif; font-size: clamp(2.2rem, 4.5vw, 3.8rem); font-weight: 300; line-height: 1.05; margin-bottom: 14px; }
+.stitle em { font-style: italic; color: var(--silver-light); }
+.ssub { font-size: 0.95rem; font-weight: 300; color: var(--silver); line-height: 1.8; max-width: 500px; }
+
+/* SERVICES */
+#services { padding: 120px 60px; background: var(--dark2); position: relative; overflow: hidden; }
+#services::before { content: ''; position: absolute; top: 0; left: 0; right: 0; height: 1px; background: linear-gradient(90deg, transparent, var(--accent), transparent); }
+#services::after { content: ''; position: absolute; width: 500px; height: 500px; border-radius: 50%; right: -150px; bottom: -150px; background: radial-gradient(circle, rgba(110,140,255,0.05) 0%, transparent 70%); animation: rotateSlow 30s linear infinite; }
+.svc-head { display: flex; justify-content: space-between; align-items: flex-end; margin-bottom: 64px; gap: 30px; flex-wrap: wrap; }
+.svc-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 2px; position: relative; z-index: 1; }
+.svc-card {
+  padding: 48px 38px; position: relative; overflow: hidden;
+  border: 1px solid var(--border); background: var(--glass);
+  transition: all 0.45s ease; cursor: default;
+}
+.svc-card-bg { position: absolute; inset: 0; background-size: cover; background-position: center; opacity: 0.07; transition: opacity 0.45s; }
+.svc-card:hover .svc-card-bg { opacity: 0.15; }
+.svc-card::before { content: ''; position: absolute; top: 0; left: 0; right: 0; height: 2px; background: linear-gradient(90deg, transparent, var(--accent), transparent); transform: scaleX(0); transition: transform 0.45s ease; }
+.svc-card::after { content: ''; position: absolute; top: 0; left: -100%; width: 60%; height: 100%; background: linear-gradient(90deg, transparent, rgba(110,140,255,0.05), transparent); transition: left 0.6s ease; }
+.svc-card:hover { border-color: var(--border-active); transform: translateY(-5px); box-shadow: 0 18px 50px rgba(0,0,0,0.3); background: rgba(110,140,255,0.05); }
+.svc-card:hover::before { transform: scaleX(1); }
+.svc-card:hover::after { left: 150%; }
+.svc-num { position: absolute; top: 22px; right: 26px; font-family: 'Barlow Condensed', sans-serif; font-size: 3.8rem; font-weight: 700; color: rgba(255,255,255,0.03); line-height: 1; transition: color 0.4s; }
+.svc-card:hover .svc-num { color: rgba(110,140,255,0.09); }
+.svc-icon { width: 50px; height: 50px; border: 1px solid var(--border); border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 1.35rem; margin-bottom: 24px; transition: all 0.4s; position: relative; z-index: 1; }
+.svc-card:hover .svc-icon { border-color: var(--accent); background: rgba(110,140,255,0.1); transform: scale(1.1) rotate(5deg); box-shadow: 0 0 18px rgba(110,140,255,0.2); }
+.svc-name { font-family: 'Barlow Condensed', sans-serif; font-size: 1.3rem; font-weight: 600; letter-spacing: 0.06em; text-transform: uppercase; margin-bottom: 10px; transition: color 0.3s; position: relative; z-index: 1; }
+.svc-card:hover .svc-name { color: var(--accent2); }
+.svc-desc { font-size: 0.87rem; font-weight: 300; color: var(--silver); line-height: 1.75; position: relative; z-index: 1; }
+
+/* ABOUT */
+#about { padding: 120px 60px; background: var(--dark); position: relative; overflow: hidden; }
+#about::before { content: ''; position: absolute; width: 600px; height: 600px; border-radius: 50%; left: -200px; top: 50%; transform: translateY(-50%); border: 1px solid rgba(110,140,255,0.05); animation: rotateSlow 40s linear infinite; pointer-events: none; }
+.about-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 90px; align-items: center; position: relative; z-index: 1; }
+.about-photo-wrap { position: relative; }
+.about-photo-frame {
+  aspect-ratio: 4/5; overflow: hidden; position: relative;
+  border: 1px solid var(--border); animation: borderPulse 4s ease-in-out infinite;
+}
+.about-photo-frame img { width: 100%; height: 100%; object-fit: cover; filter: grayscale(25%); transition: filter 0.5s; }
+.about-photo-frame:hover img { filter: grayscale(0%); }
+.about-photo-frame .frame-overlay { position: absolute; bottom: 0; left: 0; right: 0; padding: 20px; background: linear-gradient(to top, rgba(14,16,24,0.9), transparent); }
+.about-photo-frame .frame-label { font-family: 'Barlow Condensed', sans-serif; font-size: 0.62rem; letter-spacing: 0.4em; text-transform: uppercase; color: var(--accent); }
+.corner { position: absolute; width: 26px; height: 26px; }
+.corner.tl { top: 8px; left: 8px; border-top: 2px solid var(--accent); border-left: 2px solid var(--accent); }
+.corner.br { bottom: 8px; right: 8px; border-bottom: 2px solid var(--accent); border-right: 2px solid var(--accent); }
+.about-badge { position: absolute; bottom: -24px; right: -24px; width: 120px; height: 120px; border-radius: 50%; background: linear-gradient(135deg, var(--accent), var(--accent3)); display: flex; flex-direction: column; align-items: center; justify-content: center; box-shadow: 0 14px 40px rgba(110,140,255,0.4); animation: floatY 5s ease-in-out infinite; }
+.about-badge-n { font-family: 'Barlow Condensed', sans-serif; font-size: 2rem; font-weight: 700; color: var(--white); line-height: 1; }
+.about-badge-t { font-size: 0.54rem; font-weight: 500; letter-spacing: 0.1em; text-transform: uppercase; color: rgba(255,255,255,0.8); text-align: center; padding: 0 8px; }
+.about-list { margin-top: 34px; display: flex; flex-direction: column; gap: 12px; }
+.about-item { display: flex; align-items: center; gap: 14px; padding: 14px 20px; border: 1px solid var(--border); background: var(--glass); transition: all 0.35s; position: relative; overflow: hidden; }
+.about-item::before { content: ''; position: absolute; left: 0; top: 0; bottom: 0; width: 0; background: var(--accent); transition: width 0.35s; opacity: 0.5; }
+.about-item:hover { border-color: var(--border-active); background: var(--glass-strong); transform: translateX(5px); }
+.about-item:hover::before { width: 2px; }
+.about-dot { width: 6px; height: 6px; border-radius: 50%; background: var(--accent); flex-shrink: 0; box-shadow: 0 0 6px var(--accent); }
+.about-item p { font-size: 0.87rem; font-weight: 300; color: var(--silver-light); }
+
+/* PHOTO STRIP */
+.photo-strip { display: grid; grid-template-columns: repeat(4, 1fr); gap: 0; overflow: hidden; }
+.photo-strip-item { position: relative; height: 200px; overflow: hidden; cursor: pointer; }
+.photo-strip-item img { width: 100%; height: 100%; object-fit: cover; filter: grayscale(40%) brightness(0.65); transition: all 0.5s; }
+.photo-strip-item:hover img { filter: grayscale(0%) brightness(0.85); transform: scale(1.06); }
+.photo-strip-item .ps-label { position: absolute; bottom: 0; left: 0; right: 0; padding: 14px 16px; background: linear-gradient(to top, rgba(14,16,24,0.88), transparent); font-family: 'Barlow Condensed', sans-serif; font-size: 0.65rem; letter-spacing: 0.25em; text-transform: uppercase; color: var(--accent); }
+.photo-strip-item .ps-border { position: absolute; inset: 0; border: 1px solid var(--border); transition: border-color 0.4s; pointer-events: none; }
+.photo-strip-item:hover .ps-border { border-color: var(--border-active); }
+
+/* GALLERY */
+#gallery { padding: 120px 60px; background: var(--dark2); position: relative; overflow: hidden; }
+#gallery::before { content: ''; position: absolute; top: 0; left: 0; right: 0; height: 1px; background: linear-gradient(90deg, transparent, var(--silver-dark), transparent); opacity: 0.35; }
+.gal-head { display: flex; justify-content: space-between; align-items: flex-end; margin-bottom: 48px; gap: 24px; flex-wrap: wrap; }
+.gal-grid { display: grid; grid-template-columns: repeat(4, 1fr); grid-template-rows: 260px 200px; gap: 3px; }
+.gal-item { position: relative; overflow: hidden; cursor: pointer; background: var(--dark); }
+.gal-item:nth-child(1) { grid-column: 1 / 3; }
+.gal-item:nth-child(4) { grid-column: 4 / 5; grid-row: 1 / 3; }
+.gal-item img { width: 100%; height: 100%; object-fit: cover; filter: grayscale(30%) brightness(0.65); transition: all 0.5s; }
+.gal-item:hover img { filter: grayscale(0%) brightness(0.85); transform: scale(1.05); }
+.gal-overlay { position: absolute; inset: 0; background: linear-gradient(to top, rgba(14,16,24,0.85) 0%, transparent 55%); }
+.gal-border { position: absolute; inset: 0; border: 1px solid var(--border); transition: border-color 0.4s; }
+.gal-item:hover .gal-border { border-color: var(--border-active); }
+.gal-label { position: absolute; bottom: 14px; left: 14px; font-size: 0.62rem; letter-spacing: 0.26em; text-transform: uppercase; color: var(--silver-light); font-weight: 400; opacity: 0; transform: translateY(6px); transition: all 0.4s; }
+.gal-item:hover .gal-label { opacity: 1; transform: translateY(0); }
+
+/* BOOKING */
+#booking { padding: 120px 60px; background: var(--dark); overflow: hidden; }
+.book-wrap { max-width: 780px; margin: 0 auto; }
+.book-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; margin-top: 48px; }
+.fg { display: flex; flex-direction: column; gap: 7px; }
+.fg.full { grid-column: 1 / -1; }
+.fl { font-size: 0.62rem; font-weight: 500; letter-spacing: 0.22em; text-transform: uppercase; color: var(--silver-dark); }
+.fi, .fs, .ft {
+  background: var(--glass); border: 1px solid var(--border);
+  color: var(--white); padding: 13px 16px;
+  font-family: 'Barlow', sans-serif; font-size: 0.9rem; font-weight: 300;
+  outline: none; transition: all 0.3s; appearance: none;
+}
+.fi:focus, .fs:focus, .ft:focus { border-color: var(--accent); background: rgba(110,140,255,0.04); box-shadow: 0 0 0 3px rgba(110,140,255,0.08); }
+.ft { resize: vertical; min-height: 110px; }
+.fs option { background: var(--dark2); }
+.fbtn {
+  width: 100%; margin-top: 6px;
+  background: linear-gradient(135deg, var(--accent), var(--accent3));
+  color: var(--white); border: none; padding: 17px 40px;
+  font-family: 'Barlow', sans-serif; font-size: 0.72rem; font-weight: 600;
+  letter-spacing: 0.22em; text-transform: uppercase; cursor: pointer;
+  clip-path: polygon(12px 0%, 100% 0%, calc(100% - 12px) 100%, 0% 100%);
+  box-shadow: 0 8px 28px rgba(110,140,255,0.28);
+  transition: all 0.3s; position: relative; overflow: hidden;
+}
+.fbtn::before { content: ''; position: absolute; top: 0; left: -100%; width: 100%; height: 100%; background: linear-gradient(90deg, transparent, rgba(255,255,255,0.12), transparent); transition: left 0.5s; }
+.fbtn:hover { transform: translateY(-2px); box-shadow: 0 14px 42px rgba(110,140,255,0.45); }
+.fbtn:hover::before { left: 100%; }
+#bsuccess { display: none; text-align: center; padding: 48px; border: 1px solid var(--border-active); background: rgba(110,140,255,0.05); margin-top: 28px; }
+#bsuccess .si { font-size: 3rem; margin-bottom: 14px; animation: floatY 3s ease-in-out infinite; }
+#bsuccess h3 { font-family: 'Cormorant Garamond', serif; font-size: 1.9rem; font-weight: 300; margin-bottom: 8px; }
+#bsuccess p { font-size: 0.9rem; color: var(--silver); }
+
+/* CONTACT */
+#contact { padding: 120px 60px; background: var(--dark2); position: relative; overflow: hidden; }
+#contact::before { content: ''; position: absolute; top: 0; left: 0; right: 0; height: 1px; background: linear-gradient(90deg, transparent, var(--accent), transparent); }
+.contact-grid { display: grid; grid-template-columns: 1fr 1.2fr; gap: 80px; align-items: start; }
+.hours-table { margin-top: 32px; }
+.hr { display: flex; justify-content: space-between; align-items: center; padding: 13px 0; border-bottom: 1px solid var(--border); transition: all 0.3s; position: relative; overflow: hidden; }
+.hr::before { content: ''; position: absolute; left: 0; top: 0; bottom: 0; width: 0; background: var(--accent); transition: width 0.3s; opacity: 0.4; }
+.hr:hover { padding-left: 8px; }
+.hr:hover::before { width: 2px; }
+.hr:last-child { border-bottom: none; }
+.hr-day { font-size: 0.8rem; font-weight: 400; letter-spacing: 0.08em; color: var(--silver-light); }
+.hr-time { font-family: 'Barlow Condensed', sans-serif; font-size: 0.95rem; font-weight: 500; }
+.hr-time.closed { color: var(--silver-dark); }
+.hr-time.special { color: var(--accent2); }
+.hr.today .hr-day { color: var(--accent); font-weight: 500; }
+.hr.today .hr-time { color: var(--accent); }
+.today-tag { font-size: 0.52rem; letter-spacing: 0.14em; text-transform: uppercase; color: var(--dark); background: var(--accent); padding: 2px 6px; margin-left: 7px; font-weight: 700; }
+.cinfo { margin-top: 32px; display: flex; flex-direction: column; gap: 14px; }
+.ci { display: flex; align-items: flex-start; gap: 16px; padding: 20px 22px; border: 1px solid var(--border); background: var(--glass); transition: all 0.35s; position: relative; overflow: hidden; }
+.ci::before { content: ''; position: absolute; left: 0; top: 0; bottom: 0; width: 0; background: linear-gradient(90deg, rgba(110,140,255,0.12), transparent); transition: width 0.35s; }
+.ci:hover { border-color: var(--border-active); background: var(--glass-strong); transform: translateX(4px); }
+.ci:hover::before { width: 100%; }
+.ci-icon { font-size: 1.25rem; flex-shrink: 0; margin-top: 2px; position: relative; z-index: 1; }
+.ci-label { font-size: 0.6rem; font-weight: 500; letter-spacing: 0.26em; text-transform: uppercase; color: var(--accent); margin-bottom: 3px; }
+.ci-val { font-size: 0.9rem; font-weight: 300; color: var(--silver-light); line-height: 1.5; position: relative; z-index: 1; }
+.ci-val a { color: inherit; text-decoration: none; transition: color 0.3s; }
+.ci-val a:hover { color: var(--white); }
+.map-box { margin-top: 24px; border: 1px solid var(--border); overflow: hidden; position: relative; transition: border-color 0.35s; }
+.map-box:hover { border-color: var(--border-active); }
+.map-tag { position: absolute; top: 10px; left: 10px; z-index: 2; background: rgba(14,16,24,0.92); backdrop-filter: blur(8px); border: 1px solid var(--border); padding: 5px 12px; font-size: 0.6rem; letter-spacing: 0.2em; text-transform: uppercase; color: var(--accent); pointer-events: none; }
+.map-box iframe { width: 100%; height: 230px; border: none; display: block; filter: grayscale(55%) invert(88%) hue-rotate(175deg) brightness(0.88); transition: filter 0.4s; }
+.map-box:hover iframe { filter: grayscale(25%) invert(85%) hue-rotate(175deg) brightness(0.94); }
+.map-link { display: block; width: 100%; background: transparent; border: none; border-top: 1px solid var(--border); color: var(--accent); padding: 11px; font-family: 'Barlow', sans-serif; font-size: 0.65rem; font-weight: 500; letter-spacing: 0.2em; text-transform: uppercase; cursor: pointer; transition: all 0.3s; text-align: center; text-decoration: none; }
+.map-link:hover { background: rgba(110,140,255,0.07); color: var(--white); }
+
+/* FOOTER */
+footer { background: var(--dark); border-top: 1px solid var(--border); padding: 48px 60px; display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 20px; overflow: hidden; width: 100%; }
+.f-logo { font-family: 'Barlow Condensed', sans-serif; font-size: 1.3rem; font-weight: 700; letter-spacing: 0.18em; color: var(--white); text-transform: uppercase; }
+.f-logo span { color: var(--accent); font-weight: 300; }
+.f-copy { font-size: 0.68rem; letter-spacing: 0.1em; color: var(--silver-dark); }
+.f-links { display: flex; gap: 24px; }
+.f-links a { font-size: 0.65rem; letter-spacing: 0.16em; text-transform: uppercase; color: var(--silver-dark); text-decoration: none; transition: color 0.3s; }
+.f-links a:hover { color: var(--accent); }
+
+/* CHAT */
+#chat-btn { position: fixed; bottom: 26px; right: 26px; z-index: 900; width: 58px; height: 58px; border-radius: 50%; background: linear-gradient(135deg, var(--accent), var(--accent3)); border: none; cursor: pointer; display: flex; align-items: center; justify-content: center; font-size: 1.45rem; box-shadow: 0 6px 24px rgba(110,140,255,0.4); transition: all 0.3s; animation: pulse 3s ease-in-out infinite; }
+#chat-btn:hover { transform: scale(1.08); }
+#chat-win { position: fixed; bottom: 98px; right: 26px; z-index: 900; width: 360px; background: var(--dark2); border: 1px solid var(--border-active); display: none; flex-direction: column; box-shadow: 0 24px 60px rgba(0,0,0,0.5); overflow: hidden; }
+.ch-head { padding: 16px 18px; background: linear-gradient(135deg, rgba(110,140,255,0.13), rgba(74,108,247,0.07)); border-bottom: 1px solid var(--border); display: flex; align-items: center; gap: 11px; }
+.ch-av { width: 36px; height: 36px; border-radius: 50%; background: linear-gradient(135deg, var(--accent), var(--accent3)); display: flex; align-items: center; justify-content: center; font-size: 1rem; flex-shrink: 0; animation: floatY 4s ease-in-out infinite; }
+.ch-name { font-weight: 600; font-size: 0.88rem; letter-spacing: 0.04em; }
+.ch-status { font-size: 0.65rem; color: var(--accent); letter-spacing: 0.1em; }
+.ch-close { background: none; border: none; color: var(--silver-dark); font-size: 1.1rem; cursor: pointer; transition: color 0.3s; padding: 4px; margin-left: auto; }
+.ch-close:hover { color: var(--white); }
+.ch-msgs { padding: 16px; height: 310px; overflow-y: auto; display: flex; flex-direction: column; gap: 11px; }
+.ch-msgs::-webkit-scrollbar { width: 2px; }
+.ch-msgs::-webkit-scrollbar-thumb { background: var(--border-active); }
+.msg { max-width: 85%; padding: 11px 14px; font-size: 0.84rem; font-weight: 300; line-height: 1.55; white-space: pre-line; }
+.msg.bot { background: var(--glass-strong); border: 1px solid var(--border); align-self: flex-start; border-radius: 2px 12px 12px 12px; }
+.msg.user { background: linear-gradient(135deg, var(--accent), var(--accent3)); color: var(--white); align-self: flex-end; border-radius: 12px 2px 12px 12px; }
+.msg.typing { display: flex; gap: 5px; align-items: center; padding: 13px 16px; }
+.dot { width: 6px; height: 6px; border-radius: 50%; background: var(--silver-dark); animation: typingDot 1.4s ease-in-out infinite; }
+.dot:nth-child(2) { animation-delay: 0.2s; }
+.dot:nth-child(3) { animation-delay: 0.4s; }
+.ch-inp { padding: 13px 14px; border-top: 1px solid var(--border); display: flex; gap: 9px; align-items: center; }
+#cinput { flex: 1; background: var(--glass); border: 1px solid var(--border); color: var(--white); padding: 9px 13px; font-family: 'Barlow', sans-serif; font-size: 0.84rem; font-weight: 300; outline: none; transition: border-color 0.3s; border-radius: 2px; }
+#cinput:focus { border-color: var(--accent); }
+#cinput::placeholder { color: var(--silver-dark); }
+#csend { background: linear-gradient(135deg, var(--accent), var(--accent3)); border: none; color: var(--white); width: 36px; height: 36px; border-radius: 50%; cursor: pointer; display: flex; align-items: center; justify-content: center; font-size: 0.9rem; transition: all 0.3s; flex-shrink: 0; }
+#csend:hover { transform: scale(1.1); }
+
+/* ADMIN */
+#adm-ov { display: none; position: fixed; inset: 0; z-index: 2000; background: rgba(0,0,0,0.82); backdrop-filter: blur(10px); }
+#adm-pan { position: fixed; top: 0; right: -700px; width: min(700px, 100vw); height: 100vh; background: var(--dark2); border-left: 1px solid var(--border-active); z-index: 2001; transition: right 0.5s cubic-bezier(0.16, 1, 0.3, 1); overflow-y: auto; display: flex; flex-direction: column; }
+#adm-pan.open { right: 0; }
+.adm-head { padding: 26px 30px; background: linear-gradient(135deg, rgba(110,140,255,0.11), rgba(74,108,247,0.06)); border-bottom: 1px solid var(--border); display: flex; align-items: center; justify-content: space-between; position: sticky; top: 0; z-index: 1; backdrop-filter: blur(12px); }
+.adm-title { font-family: 'Barlow Condensed', sans-serif; font-size: 1.05rem; font-weight: 700; letter-spacing: 0.2em; text-transform: uppercase; }
+.adm-title span { color: var(--accent); }
+.adm-x { background: none; border: 1px solid var(--border); color: var(--silver); padding: 7px 14px; font-family: 'Barlow', sans-serif; font-size: 0.62rem; letter-spacing: 0.18em; text-transform: uppercase; cursor: pointer; transition: all 0.3s; }
+.adm-x:hover { border-color: var(--accent); color: var(--white); }
+.adm-login { flex: 1; display: flex; align-items: center; justify-content: center; padding: 40px; }
+.adm-login-box { width: 100%; max-width: 340px; text-align: center; }
+.adm-login-icon { font-size: 2.8rem; margin-bottom: 20px; opacity: 0.6; animation: floatY 4s ease-in-out infinite; }
+.adm-login-title { font-family: 'Cormorant Garamond', serif; font-size: 1.8rem; font-weight: 300; margin-bottom: 7px; }
+.adm-login-sub { font-size: 0.8rem; color: var(--silver); margin-bottom: 30px; }
+.adm-inp { width: 100%; background: var(--glass); border: 1px solid var(--border); color: var(--white); padding: 13px 16px; font-family: 'Barlow', sans-serif; font-size: 0.9rem; outline: none; margin-bottom: 11px; transition: border 0.3s; }
+.adm-inp:focus { border-color: var(--accent); }
+.adm-btn { width: 100%; background: linear-gradient(135deg, var(--accent), var(--accent3)); border: none; color: var(--white); padding: 13px; font-family: 'Barlow', sans-serif; font-size: 0.72rem; font-weight: 600; letter-spacing: 0.2em; text-transform: uppercase; cursor: pointer; transition: all 0.3s; margin-top: 5px; }
+.adm-btn:hover { opacity: 0.85; transform: translateY(-2px); }
+.adm-err { font-size: 0.78rem; color: #ff6b6b; margin-top: 10px; display: none; }
+.adm-content { display: none; flex-direction: column; flex: 1; }
+.adm-tabs { display: flex; border-bottom: 1px solid var(--border); padding: 0 30px; position: sticky; top: 77px; background: var(--dark2); z-index: 1; }
+.adm-tab { padding: 14px 18px; font-size: 0.62rem; font-weight: 500; letter-spacing: 0.2em; text-transform: uppercase; color: var(--silver-dark); cursor: pointer; border-bottom: 2px solid transparent; transition: all 0.3s; }
+.adm-tab.on { color: var(--accent); border-bottom-color: var(--accent); }
+.adm-tab:hover:not(.on) { color: var(--silver); }
+.adm-body { padding: 26px 30px; flex: 1; }
+.adm-sec { display: none; }
+.adm-sec.on { display: block; }
+.adm-stats { display: grid; grid-template-columns: repeat(3, 1fr); gap: 12px; margin-bottom: 24px; }
+.adm-stat { background: var(--glass); border: 1px solid var(--border); padding: 20px; text-align: center; transition: all 0.3s; }
+.adm-stat:hover { border-color: var(--border-active); }
+.adm-stat-n { font-family: 'Barlow Condensed', sans-serif; font-size: 2.2rem; font-weight: 700; color: var(--white); line-height: 1; }
+.adm-stat-l { font-size: 0.58rem; letter-spacing: 0.2em; text-transform: uppercase; color: var(--silver-dark); margin-top: 4px; }
+.bk-list { display: flex; flex-direction: column; gap: 9px; }
+.bk-entry { background: var(--glass); border: 1px solid var(--border); padding: 14px 18px; display: flex; align-items: center; justify-content: space-between; gap: 10px; flex-wrap: wrap; transition: all 0.3s; }
+.bk-entry:hover { border-color: var(--border-active); }
+.bk-name { font-weight: 500; font-size: 0.88rem; margin-bottom: 2px; }
+.bk-meta { font-size: 0.74rem; color: var(--silver-dark); }
+.bk-svc { font-size: 0.62rem; letter-spacing: 0.14em; text-transform: uppercase; color: var(--accent); margin-top: 2px; }
+.bk-acts { display: flex; gap: 7px; }
+.btn-xs { padding: 5px 12px; font-family: 'Barlow', sans-serif; font-size: 0.6rem; letter-spacing: 0.14em; text-transform: uppercase; cursor: pointer; transition: all 0.3s; border: 1px solid; }
+.btn-ok { background: transparent; border-color: rgba(110,140,255,0.4); color: var(--accent); }
+.btn-ok:hover { background: rgba(110,140,255,0.1); }
+.btn-del { background: transparent; border-color: rgba(255,80,80,0.3); color: #ff8080; }
+.btn-del:hover { background: rgba(255,80,80,0.1); }
+.adm-empty { text-align: center; padding: 36px; color: var(--silver-dark); font-size: 0.84rem; }
+.adm-csv { background: transparent; border: 1px solid var(--border); color: var(--silver); padding: 9px 20px; font-family: 'Barlow', sans-serif; font-size: 0.62rem; letter-spacing: 0.18em; text-transform: uppercase; cursor: pointer; transition: all 0.3s; margin-bottom: 18px; }
+.adm-csv:hover { border-color: var(--accent); color: var(--accent); }
+
+/* MOBILE MENU */
+.mob-menu { display: none; position: fixed; inset: 0; z-index: 999; background: var(--dark); flex-direction: column; align-items: center; justify-content: center; gap: 28px; }
+.mob-menu.open { display: flex; }
+.mob-menu a { font-family: 'Cormorant Garamond', serif; font-size: 2.2rem; font-style: italic; font-weight: 300; color: var(--white); text-decoration: none; letter-spacing: 0.08em; transition: color 0.3s; }
+.mob-menu a:hover { color: var(--accent); }
+.mob-x { position: absolute; top: 22px; right: 22px; background: none; border: none; color: var(--silver); font-size: 1.6rem; cursor: pointer; }
+
+@media (max-width: 960px) {
+  nav, nav.scrolled { padding: 16px 22px; }
+  .nav-links, .nav-cta { display: none; }
+  .hamburger { display: flex; }
+  .hero { padding: 0 22px; }
+  .hero-stats, .scroll-hint { display: none; }
+  #services, #about, #gallery, #booking, #contact { padding: 80px 22px; }
+  .svc-grid { grid-template-columns: 1fr; }
+  .about-grid { grid-template-columns: 1fr; gap: 44px; }
+  .photo-strip { grid-template-columns: 1fr 1fr; }
+  .gal-grid { grid-template-columns: 1fr 1fr; grid-template-rows: auto; }
+  .gal-item:nth-child(1), .gal-item:nth-child(4) { grid-column: auto; grid-row: auto; }
+  .gal-item { height: 180px; }
+  .book-grid { grid-template-columns: 1fr; }
+  .contact-grid { grid-template-columns: 1fr; gap: 44px; }
+  footer { flex-direction: column; padding: 30px 22px; text-align: center; }
+  .f-links { justify-content: center; }
+  #chat-win { width: calc(100vw - 36px); right: 18px; }
+  #adm-pan { width: 100vw; }
+}
+</style>
+</head>
+<body>
+
+<!-- MOBILE MENU -->
+<div class="mob-menu" id="mobMenu">
+  <button class="mob-x" onclick="closeMob()">&#10005;</button>
+  <a href="#services" onclick="closeMob()">&#933;&#960;&#951;&#961;&#949;&#963;&#943;&#949;&#962;</a>
+  <a href="#about" onclick="closeMob()">&#931;&#967;&#949;&#964;&#953;&#954;&#940;</a>
+  <a href="#gallery" onclick="closeMob()">Gallery</a>
+  <a href="#booking" onclick="closeMob()">&#929;&#945;&#957;&#964;&#949;&#946;&#959;&#973;</a>
+  <a href="#contact" onclick="closeMob()">&#917;&#960;&#953;&#954;&#959;&#953;&#957;&#969;&#957;&#943;&#945;</a>
+</div>
+
+<!-- NAV -->
+<nav id="nav">
+  <a href="#" class="nav-logo">ROLIA<span>Style</span></a>
+  <ul class="nav-links">
+    <li><a href="#services">Υπηρεσίες</a></li>
+    <li><a href="#about">Σχετικά</a></li>
+    <li><a href="#gallery">Gallery</a></li>
+    <li><a href="#booking">Ραντεβού</a></li>
+    <li><a href="#contact">Επικοινωνία</a></li>
+  </ul>
+  <button class="nav-cta" onclick="goBook()">Κλείσε Ραντεβού</button>
+  <div class="hamburger" onclick="openMob()">
+    <span></span><span></span><span></span>
+  </div>
+</nav>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-bg"></div>
+  <div class="hero-photo"></div>
+  <div class="hero-grid"></div>
+  <div class="orb orb1"></div>
+  <div class="orb orb2"></div>
+  <div class="orb orb3"></div>
+  <div class="hero-content">
+    <div class="hero-tag">
+      <div class="hero-tag-dot"></div>
+      Ηράκλειο, Κρήτη — Εξειδικευμένοι Ηλεκτρολόγοι Αυτοκινήτων
+    </div>
+    <h1 class="hero-h1">
+      <span class="line1">ROLIA</span>
+      <span class="line2">Style</span>
+    </h1>
+    <p class="hero-sub">Εξειδικευμένη αυτοκινητιστική ηλεκτρολογία υψηλής ποιότητας. Αξιόπιστες λύσεις για κάθε όχημα, με ακρίβεια και επαγγελματισμό.</p>
+    <div class="hero-btns">
+      <button class="btn-main" onclick="goBook()">Κλείσε Ραντεβού &#8599;</button>
+      <button class="btn-out" onclick="goTo('services')">Δες τις Υπηρεσίες</button>
+    </div>
+  </div>
+  <div class="hero-stats">
+    <div class="stat"><div class="stat-n" id="s1">0</div><div class="stat-l">Χρόνια Εμπειρίας</div></div>
+    <div class="stat"><div class="stat-n" id="s2">0</div><div class="stat-l">Ικανοποιημένοι Πελάτες</div></div>
+    <div class="stat"><div class="stat-n" id="s3">0</div><div class="stat-l">Εγγύηση Εργασίας</div></div>
+  </div>
+  <div class="scroll-hint">
+    <div class="scroll-line"></div>
+    Scroll
+  </div>
+</section>
+
+<!-- TICKER -->
+<div class="ticker">
+  <div class="ticker-inner">
+    <span class="tick">&#9889; Ηλεκτρολογία Αυτοκινήτων</span><span class="tick tick-dot">&#10022;</span>
+    <span class="tick">&#128267; Μπαταρίες &amp; Δυναμό</span><span class="tick tick-dot">&#10022;</span>
+    <span class="tick">&#128680; Συναγερμοί &amp; GPS</span><span class="tick tick-dot">&#10022;</span>
+    <span class="tick">&#128161; Φωτισμός LED</span><span class="tick tick-dot">&#10022;</span>
+    <span class="tick">&#128251; Car Audio &amp; Multimedia</span><span class="tick tick-dot">&#10022;</span>
+    <span class="tick">&#128295; Διάγνωση &amp; ECU</span><span class="tick tick-dot">&#10022;</span>
+    <span class="tick">&#9889; Ηλεκτρολογία Αυτοκινήτων</span><span class="tick tick-dot">&#10022;</span>
+    <span class="tick">&#128267; Μπαταρίες &amp; Δυναμό</span><span class="tick tick-dot">&#10022;</span>
+    <span class="tick">&#128680; Συναγερμοί &amp; GPS</span><span class="tick tick-dot">&#10022;</span>
+    <span class="tick">&#128161; Φωτισμός LED</span><span class="tick tick-dot">&#10022;</span>
+    <span class="tick">&#128251; Car Audio &amp; Multimedia</span><span class="tick tick-dot">&#10022;</span>
+    <span class="tick">&#128295; Διάγνωση &amp; ECU</span><span class="tick tick-dot">&#10022;</span>
+  </div>
+</div>
+
+<!-- SERVICES -->
+<section id="services">
+  <div class="svc-head">
+    <div>
+      <div class="stag rv">Υπηρεσίες</div>
+      <h2 class="stitle rv d1">Τι <em>Προσφέρουμε</em></h2>
+    </div>
+    <p class="ssub rv d2">Πλήρης γκάμα υπηρεσιών ηλεκτρολογίας αυτοκινήτων με σύγχρονο εξοπλισμό διάγνωσης.</p>
+  </div>
+  <div class="svc-grid">
+    <div class="svc-card rv d1">
+      <div class="svc-card-bg" style="background-image:url('https://images.unsplash.com/photo-1619642751034-765dfdf7c58e?w=400&q=60&auto=format&fit=crop')"></div>
+      <div class="svc-num">01</div><div class="svc-icon">&#9889;</div>
+      <div class="svc-name">Ηλεκτρολογικές Βλάβες</div>
+      <p class="svc-desc">Εντοπισμός και επιδιόρθωση όλων των ηλεκτρολογικών βλαβών με σύγχρονο εξοπλισμό διάγνωσης OBD.</p>
+    </div>
+    <div class="svc-card rv d2">
+      <div class="svc-card-bg" style="background-image:url('https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=400&q=60&auto=format&fit=crop')"></div>
+      <div class="svc-num">02</div><div class="svc-icon">&#128267;</div>
+      <div class="svc-name">Μπαταρίες &amp; Δυναμό</div>
+      <p class="svc-desc">Έλεγχος, αντικατάσταση και αναβάθμιση συστημάτων φόρτισης. Εξειδίκευση σε μπαταρίες AGM και lithium.</p>
+    </div>
+    <div class="svc-card rv d3">
+      <div class="svc-card-bg" style="background-image:url('https://images.unsplash.com/photo-1618843479313-40f8afb4b4d8?w=400&q=60&auto=format&fit=crop')"></div>
+      <div class="svc-num">03</div><div class="svc-icon">&#128680;</div>
+      <div class="svc-name">Συστήματα Συναγερμών</div>
+      <p class="svc-desc">Εγκατάσταση και ρύθμιση συναγερμών, immobilisers, GPS trackers και κεντρικών κλειδαριών.</p>
+    </div>
+    <div class="svc-card rv d4">
+      <div class="svc-card-bg" style="background-image:url('https://images.unsplash.com/photo-1503376780353-7e6692767b70?w=400&q=60&auto=format&fit=crop')"></div>
+      <div class="svc-num">04</div><div class="svc-icon">&#128161;</div>
+      <div class="svc-name">Φωτισμός &amp; LED</div>
+      <p class="svc-desc">Αναβάθμιση φωτισμού σε LED/Xenon, εγκατάσταση φώτων ημέρας, work lights και φωτισμός εσωτερικού.</p>
+    </div>
+    <div class="svc-card rv d5">
+      <div class="svc-card-bg" style="background-image:url('https://images.unsplash.com/photo-1545454675-3531b543be5d?w=400&q=60&auto=format&fit=crop')"></div>
+      <div class="svc-num">05</div><div class="svc-icon">&#128251;</div>
+      <div class="svc-name">Car Audio &amp; Multimedia</div>
+      <p class="svc-desc">Εγκατάσταση ραδιόφωνων, οθονών Android, ηχοσυστημάτων και cameras parking.</p>
+    </div>
+    <div class="svc-card rv d6">
+      <div class="svc-card-bg" style="background-image:url('https://images.unsplash.com/photo-1609521263047-f8f205293f24?w=400&q=60&auto=format&fit=crop')"></div>
+      <div class="svc-num">06</div><div class="svc-icon">&#128295;</div>
+      <div class="svc-name">Διάγνωση &amp; ECU</div>
+      <p class="svc-desc">Πλήρης ηλεκτρονική διάγνωση, reset service light, κωδικοποίηση κλειδιών και προγραμματισμός ECU.</p>
+    </div>
+  </div>
+</section>
+
+<!-- ABOUT -->
+<section id="about">
+  <div class="about-grid">
+    <div class="about-photo-wrap rv-l">
+      <div class="about-photo-frame">
+        <div class="corner tl"></div>
+        <div class="corner br"></div>
+        <img src="https://images.unsplash.com/photo-1625047509168-a7026f36de04?w=800&q=85&auto=format&fit=crop" alt="ROLIAStyle Εργαστήριο">
+        <div class="frame-overlay"><div class="frame-label">ROLIAStyle Automotive</div></div>
+      </div>
+      <div class="about-badge">
+        <div class="about-badge-n">15+</div>
+        <div class="about-badge-t">Χρόνια Εμπειρίας</div>
+      </div>
+    </div>
+    <div>
+      <div class="stag rv">Σχετικά Μας</div>
+      <h2 class="stitle rv d1">Αξιόπιστοι <em>Επαγγελματίες</em></h2>
+      <p class="ssub rv d2">Στην ROLIAStyle συνδυάζουμε χρόνια εμπειρίας με σύγχρονη τεχνολογία για λύσεις υψηλής ποιότητας.</p>
+      <div class="about-list">
+        <div class="about-item rv d2"><div class="about-dot"></div><p>Σύγχρονος εξοπλισμός — OBD2, oscilloscope, multimeter</p></div>
+        <div class="about-item rv d3"><div class="about-dot"></div><p>Εξειδίκευση σε ευρωπαϊκά, ιαπωνικά και κορεατικά οχήματα</p></div>
+        <div class="about-item rv d4"><div class="about-dot"></div><p>Εγγύηση εργασίας και γνήσια ανταλλακτικά</p></div>
+        <div class="about-item rv d5"><div class="about-dot"></div><p>Γρήγορη εξυπηρέτηση — τις περισσότερες επισκευές την ίδια μέρα</p></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- PHOTO STRIP -->
+<div class="photo-strip">
+  <div class="photo-strip-item">
+    <img src="https://images.unsplash.com/photo-1492144534655-ae79c964c9d7?w=500&q=80&auto=format&fit=crop" alt="Εργαστήριο">
+    <div class="ps-label">Εργαστήριο</div>
+    <div class="ps-border"></div>
+  </div>
+  <div class="photo-strip-item">
+    <img src="https://images.unsplash.com/photo-1581091226825-a6a2a5aee158?w=500&q=80&auto=format&fit=crop" alt="Τεχνολογία">
+    <div class="ps-label">Τεχνολογία</div>
+    <div class="ps-border"></div>
+  </div>
+  <div class="photo-strip-item">
+    <img src="https://images.unsplash.com/photo-1609521263047-f8f205293f24?w=500&q=80&auto=format&fit=crop" alt="Διάγνωση">
+    <div class="ps-label">Διάγνωση</div>
+    <div class="ps-border"></div>
+  </div>
+  <div class="photo-strip-item">
+    <img src="https://images.unsplash.com/photo-1568605117036-5fe5e7bab0b7?w=500&q=80&auto=format&fit=crop" alt="Οχήματα">
+    <div class="ps-label">Οχήματα</div>
+    <div class="ps-border"></div>
+  </div>
+</div>
+
+<!-- GALLERY -->
+<section id="gallery">
+  <div class="gal-head">
+    <div>
+      <div class="stag rv">Portfolio</div>
+      <h2 class="stitle rv d1">Δείγματα <em>Εργασιών</em></h2>
+    </div>
+    <p class="ssub rv d2">Εγκαταστάσεις, αναβαθμίσεις και επισκευές από το εργαστήριό μας.</p>
+  </div>
+  <div class="gal-grid rv-s">
+    <div class="gal-item">
+      <img src="https://images.unsplash.com/photo-1619642751034-765dfdf7c58e?w=900&q=80&auto=format&fit=crop" alt="Ηλεκτρολογικές Εγκαταστάσεις">
+      <div class="gal-overlay"></div><div class="gal-border"></div>
+      <div class="gal-label">Ηλεκτρολογικές Εγκαταστάσεις</div>
+    </div>
+    <div class="gal-item">
+      <img src="https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=600&q=80&auto=format&fit=crop" alt="Μπαταρίες">
+      <div class="gal-overlay"></div><div class="gal-border"></div>
+      <div class="gal-label">Μπαταρίες &amp; Φόρτιση</div>
+    </div>
+    <div class="gal-item">
+      <img src="https://images.unsplash.com/photo-1545454675-3531b543be5d?w=600&q=80&auto=format&fit=crop" alt="Car Audio">
+      <div class="gal-overlay"></div><div class="gal-border"></div>
+      <div class="gal-label">Car Audio</div>
+    </div>
+    <div class="gal-item">
+      <img src="https://images.unsplash.com/photo-1609521263047-f8f205293f24?w=600&q=80&auto=format&fit=crop" alt="Διάγνωση ECU">
+      <div class="gal-overlay"></div><div class="gal-border"></div>
+      <div class="gal-label">Διάγνωση ECU</div>
+    </div>
+    <div class="gal-item">
+      <img src="https://images.unsplash.com/photo-1503376780353-7e6692767b70?w=600&q=80&auto=format&fit=crop" alt="LED Φωτισμός">
+      <div class="gal-overlay"></div><div class="gal-border"></div>
+      <div class="gal-label">LED &amp; Φωτισμός</div>
+    </div>
+    <div class="gal-item">
+      <img src="https://images.unsplash.com/photo-1618843479313-40f8afb4b4d8?w=600&q=80&auto=format&fit=crop" alt="Συναγερμοί">
+      <div class="gal-overlay"></div><div class="gal-border"></div>
+      <div class="gal-label">Συναγερμοί &amp; GPS</div>
+    </div>
+  </div>
+</section>
+
+<!-- BOOKING -->
+<section id="booking">
+  <div class="book-wrap">
+    <div class="stag rv">Ραντεβού</div>
+    <h2 class="stitle rv d1">Κλείσε <em>Ραντεβού</em></h2>
+    <p class="ssub rv d2">Συμπλήρωσε τη φόρμα και θα επικοινωνήσουμε άμεσα για επιβεβαίωση.</p>
+    <div class="book-grid rv d2">
+      <div class="fg"><label class="fl">Ονοματεπώνυμο</label><input type="text" class="fi" id="bn" placeholder="Το όνομά σας"></div>
+      <div class="fg"><label class="fl">Τηλέφωνο</label><input type="tel" class="fi" id="bp" placeholder="69X XXX XXXX"></div>
+      <div class="fg"><label class="fl">Υπηρεσία</label>
+        <select class="fs" id="bsv">
+          <option value="">Επιλέξτε υπηρεσία</option>
+          <option>Ηλεκτρολογικές Βλάβες</option>
+          <option>Μπαταρίες &amp; Δυναμό</option>
+          <option>Συστήματα Συναγερμών</option>
+          <option>Φωτισμός &amp; LED</option>
+          <option>Car Audio &amp; Multimedia</option>
+          <option>Διάγνωση &amp; ECU</option>
+          <option>Άλλο</option>
+        </select>
+      </div>
+      <div class="fg"><label class="fl">Ημερομηνία</label><input type="date" class="fi" id="bd"></div>
+      <div class="fg"><label class="fl">Μάρκα &amp; Μοντέλο</label><input type="text" class="fi" id="bc" placeholder="π.χ. BMW 320i 2018"></div>
+      <div class="fg"><label class="fl">Email (προαιρετικό)</label><input type="email" class="fi" id="be" placeholder="email@example.com"></div>
+      <div class="fg full"><label class="fl">Περιγραφή Προβλήματος</label><textarea class="ft" id="bm" placeholder="Περιγράψτε σύντομα το πρόβλημα..."></textarea></div>
+      <div class="fg full"><button class="fbtn" onclick="submitB()">Αποστολή Αιτήματος Ραντεβού &#8599;</button></div>
+    </div>
+    <div id="bsuccess">
+      <div class="si">&#10003;</div>
+      <h3>Το αίτημά σας ελήφθη!</h3>
+      <p>Θα επικοινωνήσουμε μαζί σας σύντομα για επιβεβαίωση.</p>
+    </div>
+  </div>
+</section>
+
+<!-- CONTACT -->
+<section id="contact">
+  <div class="contact-grid">
+    <div>
+      <div class="stag rv">Ωράριο</div>
+      <h2 class="stitle rv d1">Ώρες <em>Λειτουργίας</em></h2>
+      <div class="hours-table rv d2">
+        <div class="hr" id="hr-mon"><span class="hr-day">Δευτέρα</span><span class="hr-time">08:30 – 17:30</span></div>
+        <div class="hr" id="hr-tue"><span class="hr-day">Τρίτη</span><span class="hr-time">08:30 – 17:30</span></div>
+        <div class="hr" id="hr-wed"><span class="hr-day">Τετάρτη</span><span class="hr-time">08:30 – 17:30</span></div>
+        <div class="hr" id="hr-thu"><span class="hr-day">Πέμπτη</span><span class="hr-time">08:30 – 17:30</span></div>
+        <div class="hr" id="hr-fri"><span class="hr-day">Παρασκευή</span><span class="hr-time">08:30 – 17:30</span></div>
+        <div class="hr" id="hr-sat"><span class="hr-day">Σάββατο</span><span class="hr-time">09:00 – 14:30</span></div>
+        <div class="hr"><span class="hr-day" style="color:var(--accent2);font-size:.74rem;">&#9888; Μεγάλο Σάββατο</span><span class="hr-time special">Διαφορετικό Ωράριο</span></div>
+        <div class="hr" id="hr-sun"><span class="hr-day">Κυριακή</span><span class="hr-time closed">Κλειστά</span></div>
+      </div>
+    </div>
+    <div>
+      <div class="stag rv">Επικοινωνία</div>
+      <h2 class="stitle rv d1">Βρείτε <em>Μας</em></h2>
+      <div class="cinfo rv d2">
+        <div class="ci">
+          <div class="ci-icon">&#128205;</div>
+          <div><div class="ci-label">Διεύθυνση</div><div class="ci-val">Σπύρου Μουστακλή &amp; Ενίας 1<br>Ξεροπόταμος, 713 03 Ηράκλειο, Κρήτη</div></div>
+        </div>
+        <div class="ci">
+          <div class="ci-icon">&#128222;</div>
+          <div><div class="ci-label">Τηλέφωνο</div><div class="ci-val"><a href="tel:2810255083">281 025 5083</a></div></div>
+        </div>
+        <div class="ci">
+          <div class="ci-icon">&#128336;</div>
+          <div><div class="ci-label">Σήμερα</div><div class="ci-val" id="today-h">—</div></div>
+        </div>
+      </div>
+      <div class="map-box rv d3">
+        <div class="map-tag">&#128205; Ξεροπόταμος, Ηράκλειο</div>
+        <iframe
+          title="ROLIAStyle Location"
+          src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3241.0!2d25.1200!3d35.3390!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x0!2zMzXCsDIwJzIwLjQiTiAyNcKwMDcnMTIuMCJF!5e0!3m2!1sel!2sgr!4v1700000000000!5m2!1sel!2sgr"
+          allowfullscreen=""
+          loading="lazy"
+          referrerpolicy="no-referrer-when-downgrade">
+        </iframe>
+        <a class="map-link" href="https://maps.google.com/?q=Σπύρου+Μουστακλή+1+Ξεροπόταμος+Ηράκλειο" target="_blank" rel="noopener">
+          Άνοιγμα στο Google Maps &#8599;
+        </a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="f-logo">ROLIA<span>Style</span></div>
+  <div class="f-copy">&#169; 2025 ROLIAStyle. Όλα τα δικαιώματα διατηρούνται.</div>
+  <div class="f-links">
+    <a href="#services">Υπηρεσίες</a>
+    <a href="#booking">Ραντεβού</a>
+    <a href="#contact">Επικοινωνία</a>
+    <a href="#" onclick="openAdm();return false;">Admin</a>
+  </div>
+</footer>
+
+<!-- CHAT BUTTON -->
+<button id="chat-btn" onclick="toggleChat()" title="AI Βοηθός">&#128172;</button>
+
+<!-- CHAT WINDOW -->
+<div id="chat-win">
+  <div class="ch-head">
+    <div class="ch-av">&#129302;</div>
+    <div>
+      <div class="ch-name">ROLIAStyle Assistant</div>
+      <div class="ch-status">&#9679; Online</div>
+    </div>
+    <button class="ch-close" onclick="toggleChat()">&#10005;</button>
+  </div>
+  <div class="ch-msgs" id="cmsgs">
+    <div class="msg bot">Γεια σας! &#128075; Είμαι ο AI βοηθός της ROLIAStyle. Πώς μπορώ να σας βοηθήσω σήμερα;</div>
+  </div>
+  <div class="ch-inp">
+    <input type="text" id="cinput" placeholder="Γράψτε το μήνυμά σας..." onkeydown="if(event.key==='Enter')sendMsg()">
+    <button id="csend" onclick="sendMsg()">&#10148;</button>
+  </div>
+</div>
+
+<!-- ADMIN OVERLAY -->
+<div id="adm-ov" onclick="closeAdm()"></div>
+
+<!-- ADMIN PANEL -->
+<div id="adm-pan">
+  <div class="adm-head">
+    <div class="adm-title">ROLIA<span>Style</span> Admin</div>
+    <button class="adm-x" onclick="closeAdm()">&#10005; Κλείσιμο</button>
+  </div>
+  <div class="adm-login" id="adm-lv">
+    <div class="adm-login-box">
+      <div class="adm-login-icon">&#128272;</div>
+      <div class="adm-login-title">Admin Panel</div>
+      <div class="adm-login-sub">Εισάγετε τον κωδικό πρόσβασης</div>
+      <input type="password" class="adm-inp" id="adm-pw" placeholder="Κωδικός..." onkeydown="if(event.key==='Enter')admLogin()">
+      <button class="adm-btn" onclick="admLogin()">Είσοδος</button>
+      <div class="adm-err" id="adm-err">&#10060; Λάθος κωδικός</div>
+    </div>
+  </div>
+  <div class="adm-content" id="adm-cv">
+    <div class="adm-tabs">
+      <div class="adm-tab on" onclick="admTab('bk',this)">Ραντεβού</div>
+      <div class="adm-tab" onclick="admTab('st',this)">Στατιστικά</div>
+      <div class="adm-tab" onclick="admTab('hr',this)">Ωράριο</div>
+    </div>
+    <div class="adm-body">
+      <div class="adm-sec on" id="tab-bk">
+        <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:16px;flex-wrap:wrap;gap:8px;">
+          <div style="font-size:.72rem;color:var(--silver-dark);letter-spacing:.1em;">Αιτήματα Ραντεβού</div>
+          <button class="adm-csv" onclick="exportCSV()">&#11015; Εξαγωγή CSV</button>
+        </div>
+        <div class="bk-list" id="bk-list"><div class="adm-empty">Δεν υπάρχουν ραντεβού ακόμα.</div></div>
+      </div>
+      <div class="adm-sec" id="tab-st">
+        <div class="adm-stats">
+          <div class="adm-stat"><div class="adm-stat-n" id="st-tot">0</div><div class="adm-stat-l">Σύνολο</div></div>
+          <div class="adm-stat"><div class="adm-stat-n" id="st-td">0</div><div class="adm-stat-l">Σήμερα</div></div>
+          <div class="adm-stat"><div class="adm-stat-n" id="st-pn">0</div><div class="adm-stat-l">Εκκρεμή</div></div>
+        </div>
+        <div style="padding:20px;border:1px solid var(--border);background:var(--glass);">
+          <div style="font-size:.6rem;letter-spacing:.22em;text-transform:uppercase;color:var(--silver-dark);margin-bottom:14px;">Δημοφιλέστερες Υπηρεσίες</div>
+          <div id="svc-st">—</div>
+        </div>
+      </div>
+      <div class="adm-sec" id="tab-hr">
+        <div style="font-size:.8rem;color:var(--silver);margin-bottom:18px;line-height:1.7;">Τρέχον ωράριο λειτουργίας ROLIAStyle.</div>
+        <div style="display:flex;flex-direction:column;gap:9px;">
+          <div style="padding:13px 16px;border:1px solid var(--border);background:var(--glass);font-size:.84rem;display:flex;justify-content:space-between;"><span>Δευτέρα – Παρασκευή</span><span style="color:var(--accent);">08:30 – 17:30</span></div>
+          <div style="padding:13px 16px;border:1px solid var(--border);background:var(--glass);font-size:.84rem;display:flex;justify-content:space-between;"><span>Σάββατο</span><span style="color:var(--accent);">09:00 – 14:30</span></div>
+          <div style="padding:13px 16px;border:1px solid var(--border);background:var(--glass);font-size:.84rem;display:flex;justify-content:space-between;"><span>Κυριακή</span><span style="color:var(--silver-dark);">Κλειστά</span></div>
+          <div style="padding:13px 16px;border:1px solid rgba(110,140,255,.22);background:rgba(110,140,255,.04);font-size:.76rem;color:var(--accent2);">&#9888; Μεγάλο Σάββατο: ενδέχεται να διαφέρει.</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script>
+/* NAV */
+window.addEventListener('scroll', function() {
+  document.getElementById('nav').classList.toggle('scrolled', window.scrollY > 50);
+});
+
+/* MOBILE */
+function openMob() { document.getElementById('mobMenu').classList.add('open'); }
+function closeMob() { document.getElementById('mobMenu').classList.remove('open'); }
+function goBook() { document.getElementById('booking').scrollIntoView({ behavior: 'smooth' }); }
+function goTo(id) { document.getElementById(id).scrollIntoView({ behavior: 'smooth' }); }
+
+/* REVEAL */
+var rvObs = new IntersectionObserver(function(entries) {
+  entries.forEach(function(e) {
+    if (e.isIntersecting) { e.target.classList.add('on'); }
+  });
+}, { threshold: 0.1 });
+document.querySelectorAll('.rv, .rv-l, .rv-r, .rv-s').forEach(function(el) { rvObs.observe(el); });
+
+/* COUNTERS */
+function runCounter(el, target, suffix) {
+  var start = 0;
+  var step = target / 60;
+  var timer = setInterval(function() {
+    start += step;
+    if (start >= target) { start = target; clearInterval(timer); }
+    if (suffix === 'K+') {
+      el.textContent = Math.floor(start / 1000) + 'K+';
+    } else {
+      el.textContent = Math.floor(start) + suffix;
+    }
+  }, 25);
+}
+setTimeout(function() {
+  runCounter(document.getElementById('s1'), 15, '+');
+  runCounter(document.getElementById('s2'), 2000, 'K+');
+  runCounter(document.getElementById('s3'), 100, '%');
+}, 800);
+
+/* TODAY HOURS */
+(function() {
+  var day = new Date().getDay();
+  var ids = ['hr-sun','hr-mon','hr-tue','hr-wed','hr-thu','hr-fri','hr-sat'];
+  var hrs = ['Κλειστά','08:30–17:30','08:30–17:30','08:30–17:30','08:30–17:30','08:30–17:30','09:00–14:30'];
+  var el = document.getElementById(ids[day]);
+  if (el) {
+    el.classList.add('today');
+    var tag = document.createElement('span');
+    tag.className = 'today-tag';
+    tag.textContent = 'Σήμερα';
+    el.querySelector('.hr-day').appendChild(tag);
+  }
+  document.getElementById('today-h').textContent = hrs[day] || '—';
+})();
+
+/* BOOKINGS */
+var bookings = JSON.parse(localStorage.getItem('rolia_bk') || '[]');
+function saveB() { localStorage.setItem('rolia_bk', JSON.stringify(bookings)); }
+
+function submitB() {
+  var name = document.getElementById('bn').value.trim();
+  var phone = document.getElementById('bp').value.trim();
+  var svc = document.getElementById('bsv').value;
+  if (!name || !phone || !svc) { alert('Συμπληρώστε: Όνομα, Τηλέφωνο και Υπηρεσία.'); return; }
+  bookings.unshift({
+    id: Date.now(), name: name, phone: phone, service: svc,
+    date: document.getElementById('bd').value,
+    car: document.getElementById('bc').value.trim(),
+    email: document.getElementById('be').value.trim(),
+    message: document.getElementById('bm').value.trim(),
+    status: 'pending',
+    created: new Date().toLocaleString('el-GR')
+  });
+  saveB();
+  ['bn','bp','be','bc','bm'].forEach(function(id) { document.getElementById(id).value = ''; });
+  document.getElementById('bsv').value = '';
+  document.getElementById('bd').value = '';
+  var s = document.getElementById('bsuccess');
+  s.style.display = 'block';
+  setTimeout(function() { s.style.display = 'none'; }, 5000);
+}
+
+/* CHAT */
+var chatOpen = false;
+
+var KB = [
+  { keys: ['γεια','καλημερα','καλησπερα','χαιρετε','hello','hi'], answers: ['Γεια σας! Καλώς ήρθατε στη ROLIAStyle! Πώς μπορώ να σας βοηθήσω;', 'Χαίρετε! Είμαι εδώ για οποιαδήποτε απορία για τις υπηρεσίες μας!'] },
+  { keys: ['τιμη','τιμες','κοστιζει','ποσο','χρεωση','πληρωνω'], answers: ['Οι τιμές εξαρτώνται από την εργασία και το όχημα. Καλέστε μας για δωρεάν εκτίμηση: 281 025 5083 📞'] },
+  { keys: ['ωραριο','ανοιχτα','κλειστα','τι ωρα','ποτε','ωρες','λειτουργια'], answers: ['Ωράριο: 🕐\n• Δευτ–Παρ: 08:30–17:30\n• Σάββατο: 09:00–14:30\n• Κυριακή: Κλειστά'] },
+  { keys: ['ραντεβου','κλεισω','φορμα','appointment'], answers: ['Για ραντεβού:\n1️⃣ Φόρμα στη σελίδα\n2️⃣ Τηλέφωνο: 281 025 5083\nΘα επιβεβαιώσουμε άμεσα!'] },
+  { keys: ['τηλεφωνο','αριθμος','επικοινωνια','phone'], answers: ['Τηλέφωνο: 📞 281 025 5083\nΔευτ–Παρ 08:30-17:30, Σαβ 09:00-14:30'] },
+  { keys: ['διευθυνση','που βρισκεστε','τοποθεσια','χαρτης','address','ξεροποταμος'], answers: ['📍 Σπύρου Μουστακλή & Ενίας 1, Ξεροπόταμος, 713 03 Ηράκλειο, Κρήτη\nΔείτε τον χάρτη στη σελίδα!'] },
+  { keys: ['μπαταρια','φορτιση','δυναμο','battery'], answers: ['Υπηρεσίες μπαταρίας: ⚡\n• Έλεγχος & διάγνωση\n• Αντικατάσταση (AGM, lithium)\n• Έλεγχος δυναμό\nΤηλ: 281 025 5083'] },
+  { keys: ['συναγερμος','alarm','gps','tracker','immobiliser'], answers: ['Εγκαθιστούμε: 🔐\n• Συναγερμούς\n• Immobilisers\n• GPS trackers\n• Κεντρικές κλειδαριές\nΤηλ: 281 025 5083'] },
+  { keys: ['φωτισμος','led','xenon','φωτα','λαμπες'], answers: ['Αναβάθμιση φωτισμού: 💡\n• LED & Xenon\n• Φώτα ημέρας DRL\n• Work lights\nΤηλ: 281 025 5083'] },
+  { keys: ['ηχοσυστημα','ραδιοφωνο','οθονη','android','multimedia','camera','parking'], answers: ['Car Audio & Multimedia: 🎵\n• Ραδιόφωνα & Android οθόνες\n• Ηχοσυστήματα\n• Κάμερες parking\nΤηλ: 281 025 5083'] },
+  { keys: ['διαγνωση','obd','ecu','check engine','service','κωδικος'], answers: ['Διάγνωση & ECU: 🔍\n• OBD2 ανάγνωση κωδικών\n• Reset service light\n• Προγραμματισμός ECU\nΤηλ: 281 025 5083'] },
+  { keys: ['ηλεκτρολογικη','βλαβη','βλαβες','καλωδιωση','σορτ'], answers: ['Ηλεκτρολογικές βλάβες: ⚡\n• Βραχυκυκλώματα\n• Προβλήματα καλωδίωσης\n• Ασφάλειες & ρελέ\nΤηλ: 281 025 5083'] },
+  { keys: ['εγγυηση','guarantee','warranty'], answers: ['Παρέχουμε εγγύηση εργασίας σε όλες τις επισκευές μας! ✅ Χρησιμοποιούμε γνήσια ανταλλακτικά.'] },
+  { keys: ['ποσο χρονο','ιδια μερα','γρηγορα','αμεσα'], answers: ['Οι περισσότερες εργασίες γίνονται την ίδια μέρα! ⚡ Καλέστε 281 025 5083 για εκτίμηση χρόνου.'] },
+  { keys: ['σχετικα','ποιοι ειστε','εταιρεια','συνεργειο','roliastyle'], answers: ['Η ROLIAStyle είναι εξειδικευμένο συνεργείο αυτοκινητιστικής ηλεκτρολογίας με 15+ χρόνια εμπειρίας στο Ηράκλειο Κρήτης. 2.000+ ικανοποιημένοι πελάτες!'] },
+  { keys: ['υπηρεσιες','τι κανετε','τι προσφερετε'], answers: ['Υπηρεσίες ROLIAStyle:\n1. Ηλεκτρολογικές βλάβες\n2. Μπαταρίες & δυναμό\n3. Συναγερμοί & GPS\n4. Φωτισμός & LED\n5. Car Audio & Multimedia\n6. Διάγνωση & ECU\nΤηλ: 281 025 5083'] },
+  { keys: ['ευχαριστω','thanks','τελεια','μπραβο','ωραια'], answers: ['Ευχαρίστως! 😊 Αν χρειαστείτε κάτι άλλο, είμαστε εδώ!'] },
+  { keys: ['αντιο','bye','τα λεμε'], answers: ['Αντίο! Ελπίζουμε να σας δούμε σύντομα! 👋'] }
+];
+
+var FALLBACKS = [
+  'Για περισσότερες πληροφορίες καλέστε: 📞 281 025 5083',
+  'Μπορείτε να μας βρείτε στο: Σπύρου Μουστακλή & Ενίας 1, Ξεροπόταμος Ηράκλειο. Τηλ: 281 025 5083',
+  'Συμπληρώστε τη φόρμα ραντεβού ή καλέστε: 281 025 5083'
+];
+var fbIdx = 0;
+
+function norm(s) {
+  return s.toLowerCase()
+    .replace(/[άαΑΆ]/g,'α').replace(/[έεΕΈ]/g,'ε').replace(/[ήηΗΉ]/g,'η')
+    .replace(/[ίιΙΊϊΪΐ]/g,'ι').replace(/[όοΟΌ]/g,'ο').replace(/[ύυΥΎϋΫΰ]/g,'υ')
+    .replace(/[ώωΩΏ]/g,'ω').replace(/[;?!.,]/g,' ').trim();
+}
+
+function getReply(msg) {
+  var n = norm(msg);
+  var best = null;
+  var bestScore = 0;
+  for (var i = 0; i < KB.length; i++) {
+    var score = 0;
+    for (var j = 0; j < KB[i].keys.length; j++) {
+      if (n.indexOf(norm(KB[i].keys[j])) !== -1) {
+        score += KB[i].keys[j].length;
+      }
+    }
+    if (score > bestScore) { bestScore = score; best = KB[i]; }
+  }
+  if (best && bestScore > 0) {
+    var arr = best.answers;
+    return arr[Math.floor(Math.random() * arr.length)];
+  }
+  var fb = FALLBACKS[fbIdx % FALLBACKS.length];
+  fbIdx++;
+  return fb;
+}
+
+function toggleChat() {
+  chatOpen = !chatOpen;
+  document.getElementById('chat-win').style.display = chatOpen ? 'flex' : 'none';
+}
+
+function sendMsg() {
+  var input = document.getElementById('cinput');
+  var msg = input.value.trim();
+  if (!msg) return;
+  input.value = '';
+  addMsg(msg, 'user');
+  var typing = addTyping();
+  var delay = 600 + Math.random() * 700;
+  setTimeout(function() {
+    typing.remove();
+    addMsg(getReply(msg), 'bot');
+  }, delay);
+}
+
+function addMsg(text, role) {
+  var el = document.createElement('div');
+  el.className = 'msg ' + role;
+  el.style.whiteSpace = 'pre-line';
+  el.textContent = text;
+  var box = document.getElementById('cmsgs');
+  box.appendChild(el);
+  box.scrollTop = box.scrollHeight;
+  return el;
+}
+
+function addTyping() {
+  var el = document.createElement('div');
+  el.className = 'msg bot typing';
+  el.innerHTML = '<div class="dot"></div><div class="dot"></div><div class="dot"></div>';
+  var box = document.getElementById('cmsgs');
+  box.appendChild(el);
+  box.scrollTop = box.scrollHeight;
+  return el;
+}
+
+/* ADMIN */
+var APASS = 'rolia2025';
+
+function openAdm() {
+  document.getElementById('adm-ov').style.display = 'block';
+  setTimeout(function() { document.getElementById('adm-pan').classList.add('open'); }, 10);
+}
+
+function closeAdm() {
+  document.getElementById('adm-pan').classList.remove('open');
+  setTimeout(function() { document.getElementById('adm-ov').style.display = 'none'; }, 520);
+}
+
+function admLogin() {
+  if (document.getElementById('adm-pw').value === APASS) {
+    document.getElementById('adm-lv').style.display = 'none';
+    document.getElementById('adm-cv').style.display = 'flex';
+    renderBK();
+    renderST();
+  } else {
+    var e = document.getElementById('adm-err');
+    e.style.display = 'block';
+    setTimeout(function() { e.style.display = 'none'; }, 3000);
+  }
+}
+
+function admTab(name, el) {
+  document.querySelectorAll('.adm-tab').forEach(function(t) { t.classList.remove('on'); });
+  document.querySelectorAll('.adm-sec').forEach(function(s) { s.classList.remove('on'); });
+  el.classList.add('on');
+  document.getElementById('tab-' + name).classList.add('on');
+}
+
+function renderBK() {
+  var list = document.getElementById('bk-list');
+  if (!bookings.length) { list.innerHTML = '<div class="adm-empty">Δεν υπάρχουν ραντεβού ακόμα.</div>'; return; }
+  var html = '';
+  for (var i = 0; i < bookings.length; i++) {
+    var b = bookings[i];
+    html += '<div class="bk-entry">' +
+      '<div><div class="bk-name">' + b.name + ' · ' + b.phone + '</div>' +
+      '<div class="bk-meta">' + (b.car || '—') + ' · ' + (b.date || 'Χωρίς ημ/νία') + ' · ' + b.created + '</div>' +
+      '<div class="bk-svc">' + b.service + '</div>' +
+      (b.message ? '<div style="font-size:.74rem;color:var(--silver-dark);margin-top:3px;">' + b.message + '</div>' : '') +
+      '</div>' +
+      '<div class="bk-acts">' +
+      '<button class="btn-xs btn-ok" onclick="confirmBK(' + b.id + ')">' + (b.status === 'confirmed' ? '✓ Επιβεβ.' : 'Επιβεβαίωση') + '</button>' +
+      '<button class="btn-xs btn-del" onclick="deleteBK(' + b.id + ')">Διαγραφή</button>' +
+      '</div></div>';
+  }
+  list.innerHTML = html;
+}
+
+function confirmBK(id) {
+  for (var i = 0; i < bookings.length; i++) {
+    if (bookings[i].id === id) { bookings[i].status = 'confirmed'; break; }
+  }
+  saveB(); renderBK(); renderST();
+}
+
+function deleteBK(id) {
+  if (!confirm('Διαγραφή ραντεβού;')) return;
+  bookings = bookings.filter(function(b) { return b.id !== id; });
+  saveB(); renderBK(); renderST();
+}
+
+function renderST() {
+  document.getElementById('st-tot').textContent = bookings.length;
+  document.getElementById('st-pn').textContent = bookings.filter(function(b) { return b.status === 'pending'; }).length;
+  var today = new Date().toLocaleDateString('el-GR');
+  document.getElementById('st-td').textContent = bookings.filter(function(b) { return b.created && b.created.indexOf(today) !== -1; }).length;
+  var counts = {};
+  bookings.forEach(function(b) { counts[b.service] = (counts[b.service] || 0) + 1; });
+  var sorted = Object.keys(counts).map(function(k) { return [k, counts[k]]; }).sort(function(a, b) { return b[1] - a[1]; });
+  if (!sorted.length) { document.getElementById('svc-st').innerHTML = '<div style="color:var(--silver-dark);font-size:.82rem;">Χωρίς δεδομένα.</div>'; return; }
+  var html = '';
+  for (var i = 0; i < sorted.length; i++) {
+    html += '<div style="display:flex;justify-content:space-between;padding:7px 0;border-bottom:1px solid var(--border);font-size:.82rem;"><span style="color:var(--silver-light)">' + sorted[i][0] + '</span><span style="color:var(--accent);font-weight:600;">' + sorted[i][1] + '</span></div>';
+  }
+  document.getElementById('svc-st').innerHTML = html;
+}
+
+function exportCSV() {
+  if (!bookings.length) { alert('Δεν υπάρχουν ραντεβού.'); return; }
+  var h = ['Όνομα','Τηλέφωνο','Υπηρεσία','Ημ/νία','Όχημα','Email','Μήνυμα','Κατάσταση','Εγγραφή'];
+  var rows = bookings.map(function(b) {
+    return [b.name,b.phone,b.service,b.date,b.car,b.email,b.message,b.status,b.created].map(function(v) { return '"' + (v || '').replace(/"/g, '""') + '"'; });
+  });
+  var csv = [h].concat(rows).map(function(r) { return r.join(','); }).join('\n');
+  var a = document.createElement('a');
+  a.href = URL.createObjectURL(new Blob(['\ufeff' + csv], { type: 'text/csv;charset=utf-8' }));
+  a.download = 'ROLIAStyle_Rantevu.csv';
+  a.click();
+}
+
+document.addEventListener('keydown', function(e) { if (e.key === 'Escape') closeAdm(); });
+
+/* PARTICLES */
+(function() {
+  var c = document.getElementById('pcv');
+  if (!c) return;
+  var ctx = c.getContext('2d');
+  var W, H, pts = [];
+  function resize() { W = c.width = window.innerWidth; H = c.height = window.innerHeight; }
+  resize();
+  window.addEventListener('resize', resize);
+  for (var i = 0; i < 55; i++) {
+    pts.push({ x: Math.random() * window.innerWidth, y: Math.random() * window.innerHeight, vx: (Math.random() - 0.5) * 0.3, vy: (Math.random() - 0.5) * 0.3, r: Math.random() * 1.3 + 0.4, a: Math.random() * 0.4 + 0.1 });
+  }
+  function draw() {
+    ctx.clearRect(0, 0, W, H);
+    for (var i = 0; i < pts.length; i++) {
+      pts[i].x += pts[i].vx; pts[i].y += pts[i].vy;
+      if (pts[i].x < 0 || pts[i].x > W) pts[i].vx *= -1;
+      if (pts[i].y < 0 || pts[i].y > H) pts[i].vy *= -1;
+      ctx.beginPath();
+      ctx.arc(pts[i].x, pts[i].y, pts[i].r, 0, Math.PI * 2);
+      ctx.fillStyle = 'rgba(110,140,255,' + pts[i].a + ')';
+      ctx.fill();
+      for (var j = i + 1; j < pts.length; j++) {
+        var dx = pts[i].x - pts[j].x, dy = pts[i].y - pts[j].y;
+        var d = Math.sqrt(dx * dx + dy * dy);
+        if (d < 120) {
+          ctx.beginPath();
+          ctx.strokeStyle = 'rgba(110,140,255,' + (0.07 * (1 - d / 120)) + ')';
+          ctx.lineWidth = 0.5;
+          ctx.moveTo(pts[i].x, pts[i].y);
+          ctx.lineTo(pts[j].x, pts[j].y);
+          ctx.stroke();
+        }
+      }
+    }
+    requestAnimationFrame(draw);
+  }
+  draw();
+})();
+</script>
+
+<!-- PARTICLE CANVAS -->
+<canvas id="pcv" style="position:fixed;inset:0;pointer-events:none;z-index:0;"></canvas>
+
+</body>
+</html>
